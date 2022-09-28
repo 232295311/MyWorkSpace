@@ -18,7 +18,7 @@ var copyRandomList = function (head) {
   let curr = head; //head不动，因为之后要重新遍历一遍
 
   const newListNode = new Node();
-  let temp = newListNode; //newListNode不动，因为之后要重新遍历一遍
+  let temp = newListNode; //新链表
 
   const map = new Map();
   while (curr != null) {
