@@ -13,10 +13,11 @@ var missingNumber = function (nums) {
 
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
-    if (nums[mid] === index) {
+    if (nums[mid] === mid) {
       left = mid + 1;
     } else {
       right = mid - 1;
     }
   }
+  return right + 1;
 };
