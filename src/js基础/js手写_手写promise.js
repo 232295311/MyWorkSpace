@@ -1,5 +1,4 @@
 function Promi(executor) {
-  console.log("this", this);
   let _this = this;
   _this.$$status = "pending";
   _this.failCallback = undefined;
@@ -9,32 +8,28 @@ function Promi(executor) {
   executor(resolve.bind(_this), reject.bind(_this));
 
   function resolve(params) {
-    // console.log(this === _this); 'true'
+    console.log("this", "params", this);
     if (_this.$$status === "pending") {
       _this.$$status = "success";
-      _this.successCallback && _this.successCallback(params);
+      _this.successCallback(params);
     }
   }
   function reject(params) {
     if (_this.$$status === "pending") {
       _this.$$status = "fail";
-      _this.failCallback && _this.failCallback(params);
+      _this.failCallback(params);
     }
   }
   Promi.prototype.then = function (succ, fail) {
     this.successCallback = succ;
     this.failCallback = fail;
-    //应该返回一个promise对象，以供链式调用
   };
-  return this;
 }
 
-const abc = new Promi(function (resolve, reject) {
+const a = new Promi(function (resolve, reject) {
+  console.log("??", params);
   setTimeout(() => {
     console.log("___");
     resolve("成功");
   }, 2000);
-});
-
-console.log(abc);
-Promise.resolve("wudi").then;
+}).then((params) => console.log("then里打印", params));
