@@ -27,9 +27,7 @@ const quickSort = (arr) => {
 const _quickSort = (arr, left, right) => {
   const swap = (arr, left, right) => {
     //交换函数
-    const temp = arr[left];
-    arr[left] = arr[right];
-    arr[right] = temp;
+    [arr[left], arr[right]] = [arr[right], arr[left]];
   };
   //递归终止条件
   if (right - left <= 0) {
