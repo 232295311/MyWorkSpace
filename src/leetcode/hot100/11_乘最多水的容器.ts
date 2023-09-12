@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Author: Tulandbla
+ * @GitHubUserName: 232295311@qq.com
+ */
 function maxArea(height: number[]): number {
   //水槽的面积由两个因素组成，当长度线性减少的时候，只考虑高度因素就可。两端的高度是由最短板影响，所以当不断寻找最大最短板的时候就能遍历找到最大面积
   let i = 0;
