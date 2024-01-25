@@ -3,6 +3,11 @@
  * @Author: Tulandbla
  * @GitHubUserName: 232295311@qq.com
  */
+/*
+吃透二分法
+https://leetcode.cn/problems/search-in-rotated-sorted-array/solutions/552298/yi-wen-dai-ni-shua-bian-er-fen-cha-zhao-dtadq/?envType=study-plan-v2&envId=top-interview-150
+ */
+
 //二分法使用的两种情况
 // （版本一）左闭右闭区间 [left, right]
 
@@ -39,7 +44,7 @@ var search = function (nums, target) {
     } else if (nums[mid] < target) {
       l = mid + 1;
     } else {
-      r = mid; // 左闭右开区间模式mid 不会被取到
+      r = mid; // 左闭右开区间模式 mid会被取到
     }
   }
   return -1;
