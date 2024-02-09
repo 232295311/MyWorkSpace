@@ -16,4 +16,5 @@ function pivotIndex(nums: number[]): number {
     }
     leftSum += nums[i];
   }
+  return -1;
 }
