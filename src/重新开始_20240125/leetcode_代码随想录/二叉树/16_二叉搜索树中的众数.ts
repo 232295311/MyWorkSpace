@@ -17,38 +17,36 @@ function findMode(root: TreeNode | null): number[] {
   //方法2：中序遍历，它必然是升序，转变成类似滑动窗口，如果和前一个数一致，就增大窗口，不一致就结算
   //结算时，如果当前频率超出结果集频率，记得清空结果集。
 
-  let preValue: number | undefined = undefined;
   let res: number[] = [];
   let MaxFreq = 0;
+  let preValue: number | undefined = undefined;
   let currFreq = 0;
   function dfs(curr: TreeNode | null) {
     if (curr == null) {
       return;
     }
-    dfs(curr.left);
+    dfs(curr.left); //左
 
-    if (curr.val !== preValue && preValue !== undefined) {
-      if (currFreq > MaxFreq) {
-        res = [preValue];
-        MaxFreq = currFreq;
-      } else if (currFreq === MaxFreq) {
-        res.push(preValue);
-      }
-      //小于的话 无事发生
-      currFreq = 0;
+    if (preValue === undefined) {
+      currFreq = 1;
+    } else if (preValue === curr.val) {
+      //与上个节点值相同
+      currFreq++;
+    } else if (preValue !== curr.val) {
+      //与上个节点值不同
+      currFreq = 1;
     }
-    currFreq++;
-    preValue = curr.val;
+    preValue = curr.val; //更新pre
+    if (currFreq === MaxFreq) {
+      res.push(curr.val);
+    } else if (currFreq > MaxFreq) {
+      res = [curr.val]; //重置
+      MaxFreq = currFreq;
+    }
 
-    dfs(curr.right);
+    dfs(curr.right); //右
   }
   dfs(root);
-  //遍历结束了 补充最后一次
-  if (currFreq > MaxFreq) {
-    res = [preValue];
-    MaxFreq = currFreq;
-  } else if (currFreq === MaxFreq) {
-    res.push(preValue);
-  }
+
   return res;
 }
